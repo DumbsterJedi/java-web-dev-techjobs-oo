@@ -9,23 +9,32 @@ import static org.junit.Assert.assertFalse;
 import org.launchcode.techjobs_oo.*;
 
 public class JobTest {
-    Job Job1;
-    Job Job2;
-    @Before
-    public void createTestJobObjs(){
-        Job1 = new Job();
-        Job2 = new Job();
-    }
+//    Job Job1;
+//    Job Job2;
+//    @Before
+//    public void createTestJobObjs(){
+//        Job1 = new Job();
+//        Job2 = new Job();
+//    }
 
     @Test
-    public void testSettingJobId(){assertEquals(Job2.getId(),Job1.getId()+1);}
-    public void testSettingJobIdTrue(){assertFalse(Job1.equals(Job2));}
+    public void testSettingJobId(){
+    Job Job1 = new Job();
+    Job Job2 = new Job();
+    assertEquals(Job2.getId(),Job1.getId()+1);}
+    public void testSettingJobIdTrue(){
+        Job Job1 = new Job();
+        Job Job2 = new Job();
+        assertFalse(Job1.equals(Job2));}
 
     @Test
     public void testJobConstructorSetsAllFields(){
         Job testJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        assertEquals(testJob.getId(),1); //this is broken when used with other tests
+
         assertEquals(testJob.getName(),"Product tester");
         assertTrue(testJob instanceof Job);
+
         assertEquals(testJob.getEmployer().getValue(),"ACME");
         assertTrue(testJob.getEmployer() instanceof Employer);
 
@@ -38,6 +47,12 @@ public class JobTest {
         assertEquals(testJob.getCoreCompetency().getValue(),"Persistence");
         assertTrue(testJob.getCoreCompetency() instanceof CoreCompetency);
 
-        assertEquals(testJob.getId(),3);
+    }
+
+    @   Test
+    public void testJobsForEquality(){
+        Job testJob1 = new Job("Competitive Driving", new Employer("Worthouse"),new Location("North America"),new PositionType("Driver"),new CoreCompetency("Drifting"));
+        Job testJob2 = new Job("Competitive Driving", new Employer("Worthouse"),new Location("North America"),new PositionType("Driver"),new CoreCompetency("Drifting"));
+        assertFalse(testJob1.equals(testJob2));
     }
 }
