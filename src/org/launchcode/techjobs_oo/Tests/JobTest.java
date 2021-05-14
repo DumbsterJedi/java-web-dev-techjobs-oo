@@ -21,7 +21,7 @@ public class JobTest {
     public void testSettingJobId(){
     Job testJob1 = new Job();
     Job testJob2 = new Job();
-    assertEquals(testJob2.getId(),testJob1.getId()+1);};
+    assertEquals(testJob1.getId()+1,testJob2.getId());};
 
     @Test
     public void testSettingJobIdTrue(){
@@ -32,7 +32,7 @@ public class JobTest {
     @Test
     public void testJobConstructorSetsAllFields(){
         Job testJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        assertEquals(testJob.getId(),1); //this is broken when used with other tests
+        assertEquals(1,testJob.getId()); //this is broken when used with other tests
 
         assertEquals(testJob.getName(),"Product tester");
         assertTrue(testJob instanceof Job);
@@ -63,7 +63,7 @@ public class JobTest {
         Job testJob1 = new Job("Competitive Driver", new Employer("Worthouse"),new Location("North America"),new PositionType("Driver"),new CoreCompetency("Drifting"));
         Job testJob2 = new Job("Competitive Driver", new Employer(),new Location(),new PositionType(),new CoreCompetency());
         Job testJob3 = new Job();
-        assertEquals(testJob1.toString(), "\n" + "ID: 1\n" +
+        assertEquals(testJob1.toString(), "\n" + "ID: 1\n" +  //also broken when used with other tests
                 "Name: Competitive Driver\n" +
                 "Employer: Worthouse\n" +
                 "Location: North America\n" +

@@ -31,7 +31,7 @@ public abstract class JobField {
     }
 
     public String getValue() {
-        if(value == null){
+        if(value == null || value.equals("")){
             return "Data not available";
         } else {
             return value;

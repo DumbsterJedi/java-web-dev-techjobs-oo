@@ -54,6 +54,9 @@ public class Job {
     public int getId() {
         return id;
     }
+    public static void resetNextId(){
+        nextId = 1;
+    }
 
         public String getName() {return name;}
 
