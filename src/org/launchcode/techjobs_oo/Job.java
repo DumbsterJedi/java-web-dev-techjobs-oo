@@ -1,5 +1,6 @@
 package org.launchcode.techjobs_oo;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Job {
@@ -54,17 +55,16 @@ public class Job {
         return id;
     }
 
-        public String getName() {
-        return name;
-    }
+        public String getName() {return name;}
+
 
     public void setName(String name) {
         this.name = name;
     }
 
     public Employer getEmployer() {
-        return employer;
-    }
+                    return employer;
+            }
 
     public void setEmployer(Employer employer) {
         this.employer = employer;
@@ -93,4 +93,39 @@ public class Job {
     public void setCoreCompetency(CoreCompetency coreCompetency) {
         this.coreCompetency = coreCompetency;
     }
-}
+
+//    @Override
+//    public String toString(){
+//        if(this.getName() == null){
+//            return "OOPS! This job does not seem to exist.";
+//        } else {
+//            return  "\n" + "ID: " + this.id + "\n" +
+//                    "Name: " + this.name + "\n" +
+//                    "Employer: " + this.getEmployer() + "\n" +
+//                    "Location: " + this.location + "\n" +
+//                    "Position Type: " + this.positionType + "\n" +
+//                    "Core Competency: " + this.coreCompetency + "\n";
+//        }
+//    }
+
+    @Override
+    public String toString(){
+
+
+        if(this.getName() == null){
+            return "OOPS! This job does not seem to exist.";
+        } else {
+            return  "\n" + "ID: " + this.id + "\n" +
+                    "Name: " + this.getName() + "\n" +
+                    "Employer: " +this.employer.getValue() + "\n" +
+                    "Location: " + this.location.getValue() + "\n" +
+                    "Position Type: " + this.positionType.getValue() + "\n" +
+                    "Core Competency: " + this.coreCompetency.getValue() + "\n";
+        }
+    }
+
+    public static void main(String[] args) {
+        Job testJob2 = new Job("", new Employer(),new Location(),new PositionType(),new CoreCompetency());
+        System.out.println(testJob2.toString());
+    }
+    }
