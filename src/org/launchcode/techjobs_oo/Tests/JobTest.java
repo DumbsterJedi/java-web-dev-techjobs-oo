@@ -1,5 +1,6 @@
 package org.launchcode.techjobs_oo.Tests;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -9,30 +10,36 @@ import static org.junit.Assert.assertFalse;
 import org.launchcode.techjobs_oo.*;
 
 public class JobTest {
-//    Job Job1;
-//    Job Job2;
-//    @Before
-//    public void createTestJobObjs(){
-//        Job1 = new Job();
-//        Job2 = new Job();
-//    }
+    Job testJob;
+    Job testJob1;
+    Job testJob2;
+    Job testJob3;
+    Job testJob4;
+    @Before
+    public void createTestJobObjs(){
+        testJob1 = new Job("Interplanetary Animal Hygienist", new Employer("Blubbos"),new Location("Europa"),new PositionType("2nd 2nd Assistant Space Whale Scrubber"),new CoreCompetency("Using a giant toothbrush"));
+        testJob2 = new Job("Interplanetary Animal Hygienist", new Employer(""),new Location(),new PositionType(),new CoreCompetency());
+        testJob3 = new Job();
+        testJob4 = new Job("Interplanetary Animal Hygienist", new Employer("Blubbos"),new Location("Europa"),new PositionType("2nd 2nd Assistant Space Whale Scrubber"),new CoreCompetency("Using a giant toothbrush"));
+        testJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+    }
+    @After
+    public void resetId(){
+        Job.resetNextId();
+    }
 
     @Test
     public void testSettingJobId(){
-    Job testJob1 = new Job();
-    Job testJob2 = new Job();
-    assertEquals(testJob1.getId()+1,testJob2.getId());};
+        assertEquals(testJob1.getId()+1,testJob2.getId());};
 
     @Test
     public void testSettingJobIdTrue(){
-        Job testJob1 = new Job();
-        Job testJob2 = new Job();
         assertFalse(testJob1.equals(testJob2));};
 
     @Test
     public void testJobConstructorSetsAllFields(){
-        Job testJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        assertEquals(1,testJob.getId()); //this is broken when used with other tests
+        assertEquals(5,testJob.getId());
 
         assertEquals(testJob.getName(),"Product tester");
         assertTrue(testJob instanceof Job);
@@ -53,31 +60,26 @@ public class JobTest {
 
     @Test
     public void testJobsForEquality(){
-        Job testJob1 = new Job("Competitive Driving", new Employer("Worthouse"),new Location("North America"),new PositionType("Driver"),new CoreCompetency("Drifting"));
-        Job testJob2 = new Job("Competitive Driving", new Employer("Worthouse"),new Location("North America"),new PositionType("Driver"),new CoreCompetency("Drifting"));
-        assertFalse(testJob1.equals(testJob2));
+        assertFalse(testJob1.equals(testJob4));
     };
 
     @Test
     public void testToString(){
-        Job testJob1 = new Job("Competitive Driver", new Employer("Worthouse"),new Location("North America"),new PositionType("Driver"),new CoreCompetency("Drifting"));
-        Job testJob2 = new Job("Competitive Driver", new Employer(),new Location(),new PositionType(),new CoreCompetency());
-        Job testJob3 = new Job();
-        assertEquals(testJob1.toString(), "\n" + "ID: 1\n" +  //also broken when used with other tests
-                "Name: Competitive Driver\n" +
-                "Employer: Worthouse\n" +
-                "Location: North America\n" +
-                "Position Type: Driver\n" +
-                "Core Competency: Drifting"+ "\n"
-        );
+        assertEquals( "\n" + "ID: 1\n" +
+                        "Name: Interplanetary Animal Hygienist\n" +
+                        "Employer: Blubbos\n" +
+                        "Location: Europa\n" +
+                        "Position Type: 2nd 2nd Assistant Space Whale Scrubber\n" +
+                        "Core Competency: Using a giant toothbrush"+ "\n"
+                ,testJob1.toString());
 
-        assertEquals(testJob2.toString(),"\n" + "ID: 2\n" +
-                "Name: Competitive Driver\n" +
+        assertEquals("\n" + "ID: 2\n" +
+                "Name: Interplanetary Animal Hygienist\n" +
                 "Employer: Data not available\n" +
                 "Location: Data not available\n" +
                 "Position Type: Data not available\n" +
-                "Core Competency: Data not available"+ "\n");
+                "Core Competency: Data not available"+ "\n",testJob2.toString());
 
-        assertEquals(testJob3.toString(),"OOPS! This job does not seem to exist.");
+        assertEquals("OOPS! This job does not seem to exist.",testJob3.toString());
     };
 }
