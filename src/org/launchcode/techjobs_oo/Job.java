@@ -54,6 +54,7 @@ public class Job {
     public int getId() {
         return id;
     }
+
     public static void resetNextId(){
         nextId = 1;
     }
@@ -97,19 +98,7 @@ public class Job {
         this.coreCompetency = coreCompetency;
     }
 
-//    @Override
-//    public String toString(){
-//        if(this.getName() == null){
-//            return "OOPS! This job does not seem to exist.";
-//        } else {
-//            return  "\n" + "ID: " + this.id + "\n" +
-//                    "Name: " + this.name + "\n" +
-//                    "Employer: " + this.getEmployer() + "\n" +
-//                    "Location: " + this.location + "\n" +
-//                    "Position Type: " + this.positionType + "\n" +
-//                    "Core Competency: " + this.coreCompetency + "\n";
-//        }
-//    }
+
 
     @Override
     public String toString(){

@@ -15,6 +15,7 @@ public class JobTest {
     Job testJob2;
     Job testJob3;
     Job testJob4;
+
     @Before
     public void createTestJobObjs(){
         testJob1 = new Job("Interplanetary Animal Hygienist", new Employer("Blubbos"),new Location("Europa"),new PositionType("2nd 2nd Assistant Space Whale Scrubber"),new CoreCompetency("Using a giant toothbrush"));
@@ -22,8 +23,8 @@ public class JobTest {
         testJob3 = new Job();
         testJob4 = new Job("Interplanetary Animal Hygienist", new Employer("Blubbos"),new Location("Europa"),new PositionType("2nd 2nd Assistant Space Whale Scrubber"),new CoreCompetency("Using a giant toothbrush"));
         testJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-
     }
+
     @After
     public void resetId(){
         Job.resetNextId();
@@ -31,8 +32,10 @@ public class JobTest {
 
     @Test
     public void testSettingJobId(){
-        assertEquals(testJob1.getId()+1,testJob2.getId());};
-
+        assertEquals(testJob1.getId()+1,testJob2.getId());
+        assertEquals(testJob1.getId()+2,testJob3.getId());
+        assertEquals(testJob1.getId()+3,testJob4.getId());
+    };
     @Test
     public void testSettingJobIdTrue(){
         assertFalse(testJob1.equals(testJob2));};
@@ -65,6 +68,7 @@ public class JobTest {
 
     @Test
     public void testToString(){
+            //if all data is entered
         assertEquals( "\n" + "ID: 1\n" +
                         "Name: Interplanetary Animal Hygienist\n" +
                         "Employer: Blubbos\n" +
@@ -73,6 +77,7 @@ public class JobTest {
                         "Core Competency: Using a giant toothbrush"+ "\n"
                 ,testJob1.toString());
 
+        //if fields are empty
         assertEquals("\n" + "ID: 2\n" +
                 "Name: Interplanetary Animal Hygienist\n" +
                 "Employer: Data not available\n" +
@@ -80,6 +85,7 @@ public class JobTest {
                 "Position Type: Data not available\n" +
                 "Core Competency: Data not available"+ "\n",testJob2.toString());
 
+        //tests if id is not available
         assertEquals("OOPS! This job does not seem to exist.",testJob3.toString());
     };
 }
